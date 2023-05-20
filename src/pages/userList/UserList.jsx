@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import UserCard from "../userCard/UserCard";
+import { Link } from "react-router-dom";
+import UserCard from "../../components/userCard/UserCard";
 import { getUsers } from "../../helpers/fetch";
 import css from "./UserList.module.css";
 const UserList = () => {
@@ -31,6 +32,9 @@ const UserList = () => {
   };
   return (
     <div>
+      <Link className={css.backLink} to={"/"}>
+        Go Home
+      </Link>
       <ul className={css.userList}>
         {visibleUsers.map(({ id, user, tweets, followers, avatar }) => (
           <UserCard

@@ -1,0 +1,12 @@
+.activeLink {
+  color: red;
+}
+
+.headerLink {
+  color: rgb(21, 162, 243);
+}
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}

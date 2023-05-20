@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import css from "./UserCard.module.css";
 import boyImg from "../../images/boy.png";
@@ -7,6 +8,7 @@ import topImg from "../../images/topPicture.png";
 const UserCard = ({ tweets, followers, avatar, id }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followersCount, setFollowersCount] = useState(parseInt(followers));
+
   const handleFollowClick = () => {
     if (isFollowing) {
       setFollowersCount((prevFollowersCount) => prevFollowersCount - 1);
@@ -32,18 +34,21 @@ const UserCard = ({ tweets, followers, avatar, id }) => {
 
   const btnClass = isFollowing ? css.clickedButton : css.defaultButton;
   return (
-    <li className={css.userCard}>
-      <img className={css.logoImg} src={logoImg} alt="logo image" />
-      <img className={css.topImg} src={topImg} alt="top image" />
-      <img className={css.userAvatar} src={avatar} alt="User Avatar" />
-      <img className={css.boyImg} src={boyImg} alt="boy image" />
-      <div className={css.avatarLine}></div>
-      <p className={css.userTextTweets}>{tweets} Tweets</p>
-      <p className={css.userTextFollowers}>{followersCount} Followers</p>
-      <button className={btnClass} onClick={handleFollowClick}>
-        {isFollowing ? "Following" : "Follow"}
-      </button>
-    </li>
+    <>
+      <li className={css.userCard}>
+        <img className={css.logoImg} src={logoImg} alt="logo image" />
+        <img className={css.topImg} src={topImg} alt="top image" />
+        <img className={css.userAvatar} src={avatar} alt="User Avatar" />
+        <img className={css.boyImg} src={boyImg} alt="boy image" />
+        <div className={css.avatarLine}></div>
+        <p className={css.userTextTweets}>{tweets} Tweets</p>
+        <p className={css.userTextFollowers}>{followersCount} Followers</p>
+        <button className={btnClass} onClick={handleFollowClick}>
+          {isFollowing ? "Following" : "Follow"}
+        </button>
+        <Outlet />
+      </li>
+    </>
   );
 };
 
